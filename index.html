@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Menta Recta</title>
+<style>
+  /* Proporción de color: blanco ~50% · negro ~35% · menta/neón/otros ~15% */
+  :root{
+    --blanco:#FFFFFF;
+    --negro:#000000;
+    --menta:#A8F5D2;
+    --neon:#39FF88;
+    --limon:#E6FF3D;
+    --cian:#00F0FF;
+    --linea:3px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;border-radius:0}
+  body{
+    font-family:"Helvetica Neue",Arial,sans-serif;
+    background:var(--blanco);
+    color:var(--negro);
+    line-height:1.5;
+  }
+  a{color:inherit}
+  :focus-visible{outline:var(--linea) solid var(--neon);outline-offset:2px}
+
+  /* NAV — negro */
+  nav{
+    background:var(--negro);
+    color:var(--blanco);
+    display:flex;justify-content:space-between;align-items:center;
+    padding:18px 40px;
+    border-bottom:6px solid var(--neon);
+  }
+  nav strong{font-size:1.25rem;letter-spacing:.02em}
+  nav ul{display:flex;gap:28px;list-style:none}
+  nav a{text-decoration:none;font-weight:600}
+  nav a:hover{color:var(--neon)}
+
+  /* HERO — mitad blanco, mitad negro */
+  .hero{display:grid;grid-template-columns:1.3fr 1fr;border-bottom:var(--linea) solid var(--negro)}
+  .hero-texto{padding:90px 40px;background:var(--blanco)}
+  .hero-texto h1{
+    font-size:clamp(2.6rem,6vw,5rem);
+    line-height:1;
+    font-weight:900;
+    letter-spacing:-.03em;
+    margin-bottom:24px;
+  }
+  .hero-texto p{max-width:46ch;font-size:1.15rem;margin-bottom:36px}
+  .boton{
+    display:inline-block;
+    background:var(--neon);
+    color:var(--negro);
+    font-weight:800;
+    text-decoration:none;
+    padding:16px 34px;
+    border:var(--linea) solid var(--negro);
+    box-shadow:6px 6px 0 var(--negro);
+    transition:transform .1s, box-shadow .1s;
+  }
+  .boton:hover{transform:translate(3px,3px);box-shadow:3px 3px 0 var(--negro)}
+  .hero-bloque{
+    background:var(--negro);
+    display:grid;grid-template-rows:2fr 1fr 1fr;
+  }
+  .hero-bloque div:nth-child(1){background:var(--menta)}
+  .hero-bloque div:nth-child(2){background:var(--negro);border-top:var(--linea) solid var(--neon)}
+  .hero-bloque div:nth-child(3){display:grid;grid-template-columns:1fr 1fr 1fr}
+  .hero-bloque div:nth-child(3) span:nth-child(1){background:var(--neon)}
+  .hero-bloque div:nth-child(3) span:nth-child(2){background:var(--limon)}
+  .hero-bloque div:nth-child(3) span:nth-child(3){background:var(--cian)}
+
+  /* SECCIONES */
+  section{padding:70px 40px}
+  h2{font-size:2rem;font-weight:900;letter-spacing:-.02em;margin-bottom:32px;
+     border-left:12px solid var(--neon);padding-left:16px}
+
+  .rejilla{display:grid;grid-template-columns:repeat(3,1fr);border:var(--linea) solid var(--negro)}
+  .caja{padding:32px;border-right:var(--linea) solid var(--negro);background:var(--blanco)}
+  .caja:last-child{border-right:0}
+  .caja h3{font-size:1.2rem;margin-bottom:10px}
+  .caja.oscura{background:var(--negro);color:var(--blanco)}
+  .caja.oscura h3{color:var(--neon)}
+  .caja.menta{background:var(--menta)}
+
+  /* BANDA NEGRA */
+  .banda{background:var(--negro);color:var(--blanco);display:grid;grid-template-columns:repeat(3,1fr);gap:0;padding:0}
+  .banda div{padding:50px 40px;border-right:var(--linea) solid var(--neon)}
+  .banda div:last-child{border-right:0}
+  .banda b{display:block;font-size:3rem;color:var(--neon);line-height:1}
+
+  /* CONTACTO */
+  .contacto{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+  label{display:block;font-weight:700;margin-bottom:6px}
+  input,textarea{
+    width:100%;padding:12px;margin-bottom:18px;
+    border:var(--linea) solid var(--negro);background:var(--blanco);font:inherit;
+  }
+  input:focus,textarea:focus{background:var(--menta)}
+  button{
+    cursor:pointer;font:inherit;font-weight:800;
+    background:var(--negro);color:var(--neon);
+    border:var(--linea) solid var(--negro);padding:14px 32px;
+  }
+  button:hover{background:var(--neon);color:var(--negro)}
+
+  footer{
+    background:var(--negro);color:var(--blanco);
+    padding:30px 40px;border-top:6px solid var(--menta);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+  }
+
+  @media (max-width:800px){
+    nav{flex-direction:column;gap:12px}
+    .hero,.rejilla,.banda,.contacto{grid-template-columns:1fr}
+    .hero-bloque{min-height:260px}
+    .caja{border-right:0;border-bottom:var(--linea) solid var(--negro)}
+    .caja:last-child{border-bottom:0}
+    .banda div{border-right:0;border-bottom:var(--linea) solid var(--neon)}
+    section,.hero-texto{padding:50px 20px}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<nav>
+  <strong>MENTA/RECTA</strong>
+  <ul>
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#cifras">Cifras</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<header class="hero" id="inicio">
+  <div class="hero-texto">
+    <h1>Líneas rectas.<br>Verde que brilla.</h1>
+    <p>Una página simple de ángulos duros: mucho blanco, bloques negros y un toque de menta fosforescente.</p>
+    <a class="boton" href="#contacto">Escríbenos</a>
+  </div>
+  <div class="hero-bloque" aria-hidden="true">
+    <div></div>
+    <div></div>
+    <div><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<section id="servicios">
+  <h2>Servicios</h2>
+  <div class="rejilla">
+    <div class="caja">
+      <h3>Diseño</h3>
+      <p>Interfaces limpias, sin curvas y con contraste alto.</p>
+    </div>
+    <div class="caja oscura">
+      <h3>Desarrollo</h3>
+      <p>Sitios rápidos, en un solo archivo y fáciles de editar.</p>
+    </div>
+    <div class="caja menta">
+      <h3>Marca</h3>
+      <p>Identidad visual en blanco, negro y verde menta.</p>
+    </div>
+  </div>
+</section>
+
+<section class="banda" id="cifras">
+  <div><b>50%</b>Blanco</div>
+  <div><b>35%</b>Negro</div>
+  <div><b>15%</b>Menta, neón y acentos</div>
+</section>
+
+<section id="contacto">
+  <h2>Contacto</h2>
+  <div class="contacto">
+    <p>Cuéntanos qué necesitas y te respondemos pronto.</p>
+    <div>
+      <label for="nombre">Nombre</label>
+      <input id="nombre" type="text">
+      <label for="correo">Correo</label>
+      <input id="correo" type="email">
+      <label for="mensaje">Mensaje</label>
+      <textarea id="mensaje" rows="4"></textarea>
+      <button type="button">Enviar</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Menta/Recta</span>
+  <span>Hecho en un solo HTML</span>
+</footer>
+
+</body>
+</html>
